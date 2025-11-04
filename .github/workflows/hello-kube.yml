@@ -1,0 +1,41 @@
+name: hello-kube
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  linux-build:
+    runs-on: [self-hosted, linux, x64 ]
+
+    steps:
+      - run: echo "Running hello-kube on Self-Hosted Linux x64 Runner"
+
+      - name: Checkout
+        uses: actions/checkout@v4 
+
+      - name: Setup Go
+        uses: actions/setup-go@v5 
+        with:
+          go-version: '1.22.x'
+          
+      - name: Build
+        run: |
+          go build -o hello-kube .
+
+      - name: Get OIDC JWT
+        id: oidc
+        run: |
+          TOKEN=$(curl -s -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.example.com" | jq -r .token)
+          echo "JWT=$TOKEN" >> $GITHUB_ENV
+
+      - name: Run
+        run: |
+          ./hello-kube 
+        env:
+          JWT: ${{ env.JWT }}
