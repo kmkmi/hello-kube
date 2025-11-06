@@ -1,0 +1,85 @@
+# ----------------------------------------
+# Terraform
+# ----------------------------------------
+
+# Local .terraform directories
+**/.terraform/*
+**/*.lock.hcl
+terraform/*-config
+terraform/kubeconfig.yaml
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Sensitive variable definitions
+*.tfvars
+*.tfvars.json
+
+# Override files (local overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Plan files
+*.plan
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# Local environment files
+.env
+.env.*
+
+# Module archives or temp builds
+*.zip
+*.tar.gz
+*.bak
+
+# ----------------------------------------
+# Golang build artifacts
+# ----------------------------------------
+
+# Binary outputs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go build cache & test results
+/build/
+bin/
+dist/
+out/
+coverage/
+*.coverprofile
+*.prof
+*.pb.go
+
+# Go workspace files (1.18+)
+go.work
+go.work.sum
+
+# Local dev/test config
+config.local.yaml
+config.local.json
+
+# ----------------------------------------
+# Editor & OS junk
+# ----------------------------------------
+
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.tmp
