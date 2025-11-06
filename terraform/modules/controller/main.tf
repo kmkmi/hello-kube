@@ -79,10 +79,10 @@ resource "helm_release" "gha_controller" {
   #   value = "https://token.actions.githubusercontent.com"
   # }
 
-  # set {
-  #   name  = "webhook.create"
-  #   value = "true"
-  # }
+  set {
+    name  = "webhook.create"
+    value = "true"
+  }
 
   wait         = true  
   cleanup_on_fail = true
