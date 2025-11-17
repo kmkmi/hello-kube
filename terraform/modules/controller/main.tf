@@ -84,6 +84,11 @@ resource "helm_release" "gha_controller" {
     value = "true"
   }
 
+  set {
+  name  = "githubWebhookServer.enabled"
+  value = "true"
+  }
+
   wait         = true  
   cleanup_on_fail = true
 }
@@ -97,8 +102,8 @@ resource "null_resource" "wait_for_arc_webhook" {
     command = <<EOT
       echo "⏳ Waiting for ARC webhook..."
       for i in {1..30}; do
-        kubectl -n actions-runner-system get deploy actions-runner-controller-webhook --kubeconfig=${var.kubeconfig_path} &>/dev/null || { echo "waiting... ($i/30)"; sleep 5; continue; }
-        kubectl -n actions-runner-system wait --for=condition=available deployment/actions-runner-controller-webhook --timeout=120s --kubeconfig=${var.kubeconfig_path} && break
+        kubectl -n actions-runner-system get deploy actions-runner-controller-github-webhook-server --kubeconfig=${var.kubeconfig_path} &>/dev/null || { echo "waiting... ($i/30)"; sleep 5; continue; }
+        kubectl -n actions-runner-system wait --for=condition=available deployment/actions-runner-controller-github-webhook-server --timeout=120s --kubeconfig=${var.kubeconfig_path} && break
         sleep 5
       done
     EOT
