@@ -96,9 +96,11 @@ kind-arc
 
 $ kubectl get po -n actions-runner-system
 NAME                                         READY   STATUS    RESTARTS   AGE
-actions-runner-controller-559597c7d5-2hkhs   2/2     Running   0          3m45s
-example-runnerdeploy-n6pbp-8ljm8             2/2     Running   0          2m20s
-example-runnerdeploy-n6pbp-qpxlc             2/2     Running   0          2m11s
+actions-runner-controller-559597c7d5-tjx7s                        2/2     Running   0               3m45s
+actions-runner-controller-github-webhook-server-65fb45f7dd4tc6f   2/2     Running   0               3m22s
+example-runnerdeploy-n8nsq-frtlb                                  2/2     Running   0               2m20s
+example-runnerdeploy-n8nsq-xxwz4                                  2/2     Running   0               2m21s
+
 
 $ kubectl get runnerdeployment -n actions-runner-system
 NAME                   ENTERPRISE   ORGANIZATION   REPOSITORY         GROUP   LABELS   DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
@@ -138,6 +140,6 @@ Dock Hub의 https://hub.docker.com/repository/docker/fhdj4564/hello-kube Reposit
 ## Note
 - 컴퓨팅 리소스나 디스크 용량이 작은 경우 runner 실행에 문제 발생할 수 있어 2core 20GB 이상 환경에서 배포 권장
 - 다음 환경에서 테스트 완료
-    - Windows 11 / git bash / X86_64
-    - windows 11 / WSL ubuntu 24.04 LTS / X86_64
-    - GCP / ubuntu 24.04 LTS / X86_64
+    - Windows 11 / git bash / x86_64
+    - Windows 11 / WSL Ubuntu 24.04 LTS / x86_64
+    - GCP / Ubuntu 24.04 LTS / x86_64
